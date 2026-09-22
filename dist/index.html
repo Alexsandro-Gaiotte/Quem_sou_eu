@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quem Sou Eu? - Jogo da Turma da Mônica</title>
+  <meta name="description" content="Jogo interativo e animado de Quem Sou Eu inspirado na Turma da Mônica. Descubra os personagens clássicos por suas frases e pistas icônicas!" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐰</text></svg>" />
+  <script type="module" crossorigin src="/assets/index-BVaEhwGW.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-1RBQdxgo.css">
+</head>
+<body>
+  <div class="comic-app-container">
+    <!-- Header with Title and HUD -->
+    <header class="comic-header">
+      <div class="comic-title-badge">
+        <span>🐰</span>
+        <h1>QUEM SOU EU?</h1>
+      </div>
+      <div class="hud-badges">
+        <div class="hud-badge score-badge" title="Pontuação">
+          ⭐ <span id="hud-score">0</span>
+        </div>
+        <div class="hud-badge streak-badge" id="hud-streak" title="Multiplicador de Combo">
+          Combo x1
+        </div>
+        <button id="sound-toggle-btn" class="icon-btn" title="Ligar/Desligar Som" aria-label="Ligar ou desligar som">
+          🔊
+        </button>
+      </div>
+    </header>
+
+    <!-- Character Stage (Top: Phaser 3 2D Game Stage) -->
+    <section class="character-stage-wrapper" aria-label="Palco do Personagem">
+      <div class="character-comic-portal" id="character-portal" title="Clique no personagem!">
+        <div id="phaser-character-canvas"></div>
+      </div>
+      <div class="stage-badge">TURMA DO LIMOEIRO</div>
+    </section>
+
+    <!-- Character Clue (Middle: Comic Speech Bubble) -->
+    <section class="speech-bubble-wrapper" aria-label="Frase do Personagem">
+      <div class="speech-bubble">
+        <span class="clue-label">FALA DO PERSONAGEM</span>
+        <p class="clue-text" id="character-clue-text">Carregando pista...</p>
+      </div>
+    </section>
+
+    <!-- Character Selection Cards (Bottom) -->
+    <section class="selection-section" aria-label="Opções de Personagens">
+      <div class="selection-prompt">
+        <span class="prompt-tag">QUAL É O MEU NOME?</span>
+      </div>
+      <div class="cards-grid" id="cards-grid">
+        <!-- Interactive Cards injected dynamically -->
+      </div>
+    </section>
+
+    <!-- Footer Controls -->
+    <footer class="comic-footer-actions">
+      <button class="hint-btn" id="hint-btn" title="Ver outra pista sobre o personagem">
+        💡 Outra Dica
+      </button>
+      <div class="round-tracker">
+        Rodada: <span id="hud-round">1 / 7</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Victory / Game Complete Modal -->
+  <div class="comic-modal-overlay" id="game-modal" style="display: none;" role="dialog" aria-modal="true">
+    <div class="comic-modal-content">
+      <div class="modal-trophy">🏆</div>
+      <h2 class="modal-title" id="modal-title">Parabéns!</h2>
+      <p class="modal-subtitle" id="modal-title-badge">Dono(a) Supremo da Rua!</p>
+      
+      <div class="modal-stats">
+        <div class="stat-item">
+          <span class="stat-val" id="modal-final-score">0</span>
+          <span class="stat-label">Pontuação</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val" id="modal-best-streak">x1</span>
+          <span class="stat-label">Maior Combo</span>
+        </div>
+      </div>
+
+      <button class="modal-btn" id="modal-restart-btn">
+        JOGAR NOVAMENTE 🔄
+      </button>
+    </div>
+  </div>
+
+</body>
+</html>
