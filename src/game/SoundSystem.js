@@ -2,7 +2,8 @@
 class SoundSystem {
   constructor() {
     this.ctx = null;
-    this.muted = localStorage.getItem('turma_game_muted') === 'true';
+    const canStorage = typeof localStorage !== 'undefined' && typeof localStorage.getItem === 'function';
+    this.muted = canStorage ? localStorage.getItem('turma_game_muted') === 'true' : false;
   }
 
   init() {
@@ -23,7 +24,9 @@ class SoundSystem {
 
   toggleMute() {
     this.muted = !this.muted;
-    localStorage.setItem('turma_game_muted', String(this.muted));
+    if (typeof localStorage !== 'undefined' && typeof localStorage.setItem === 'function') {
+      localStorage.setItem('turma_game_muted', String(this.muted));
+    }
     return this.muted;
   }
 
@@ -149,6 +152,63 @@ class SoundSystem {
 
     osc.start(now);
     osc.stop(now + 0.23);
+  }
+
+  // Sparkling magic sound when shadow is revealed
+  playReveal() {
+    if (this.muted) return;
+    this.init();
+    if (!this.ctx) return;
+
+    const arpeggio = [523.25, 659.25, 783.99, 987.77, 1174.66, 1567.98];
+    const now = this.ctx.currentTime;
+
+    arpeggio.forEach((freq, i) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      const t = now + i * 0.055;
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, t);
+
+      gain.gain.setValueAtTime(0.15, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.32);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start(t);
+      osc.stop(t + 0.34);
+    });
+  }
+
+  // Curious mystery tone when a shadow appears
+  playMystery() {
+    if (this.muted) return;
+    this.init();
+    if (!this.ctx) return;
+
+    const now = this.ctx.currentTime;
+    const notes = [329.63, 493.88]; // E4, B4 (curious fifth)
+
+    notes.forEach((freq, idx) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      const t = now + idx * 0.08;
+
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, t);
+      osc.frequency.linearRampToValueAtTime(freq * 1.05, t + 0.25);
+
+      gain.gain.setValueAtTime(0.12, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start(t);
+      osc.stop(t + 0.36);
+    });
   }
 
   // Victory melody at game complete

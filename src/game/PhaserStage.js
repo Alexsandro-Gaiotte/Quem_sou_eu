@@ -6,6 +6,9 @@ export class PhaserStage {
     this.game = null;
     this.scene = null;
     this.currentCharacter = null;
+    this.isShadowMode = true;
+    this.isRevealed = false;
+    this.idleTween = null;
     this.initGame();
   }
 
@@ -48,7 +51,7 @@ export class PhaserStage {
           this.characterSprite.setPosition(w / 2, h / 2);
         }
         if (this.rayGraphics) {
-          this.drawSunburst(w / 2, h / 2, this.currentThemeColor || 0xFFD700);
+          this.updateSunburstColor();
         }
       }
     });
@@ -62,7 +65,7 @@ export class PhaserStage {
     // Background rays graphics (comic sunburst)
     this.rayGraphics = this.scene.add.graphics();
     this.rayGraphics.setDepth(1);
-    this.drawSunburst(width / 2, height / 2, 0xFFE082);
+    this.updateSunburstColor();
 
     // Continuous rotation for comic action rays
     this.scene.tweens.add({
@@ -73,30 +76,47 @@ export class PhaserStage {
       ease: 'Linear'
     });
 
-    // Sparkle / star particles container
+    // Particle graphics layer
     this.particleGraphics = this.scene.add.graphics();
-    this.particleGraphics.setDepth(2);
+    this.particleGraphics.setDepth(15);
 
-    // If character was set before scene was ready
+    // If character was queued before scene was ready
     if (this.pendingCharacter) {
-      this.loadCharacter(this.pendingCharacter);
+      this.loadCharacter(this.pendingCharacter, this.isShadowMode);
       this.pendingCharacter = null;
     }
   }
 
-  drawSunburst(cx, cy, colorHex) {
+  updateSunburstColor() {
+    if (!this.scene || !this.rayGraphics) return;
+    const width = this.scene.scale.width;
+    const height = this.scene.scale.height;
+
+    if (this.isShadowMode && !this.isRevealed) {
+      // Mystery twilight sunburst for shadow mode
+      this.drawSunburst(width / 2, height / 2, 0x4A148C, 0xFFD54F, 0.4, 0.15);
+    } else {
+      const color = this.currentThemeColor || 0xFFD700;
+      this.drawSunburst(width / 2, height / 2, color, 0xFFFFFF, 0.35, 0.15);
+    }
+  }
+
+  drawSunburst(cx, cy, primaryHex, secondaryHex = 0xFFFFFF, alphaPrimary = 0.35, alphaSecondary = 0.15) {
     if (!this.rayGraphics) return;
     this.rayGraphics.clear();
     const numRays = 16;
-    const rayLength = 320;
+    const rayLength = 340;
     const angleStep = (Math.PI * 2) / numRays;
 
     for (let i = 0; i < numRays; i++) {
       const a1 = i * angleStep;
-      const a2 = a1 + angleStep * 0.45;
+      const a2 = a1 + angleStep * 0.48;
 
-      const alpha = i % 2 === 0 ? 0.35 : 0.15;
-      this.rayGraphics.fillStyle(colorHex, alpha);
+      const isEven = i % 2 === 0;
+      const col = isEven ? primaryHex : secondaryHex;
+      const alpha = isEven ? alphaPrimary : alphaSecondary;
+
+      this.rayGraphics.fillStyle(col, alpha);
       this.rayGraphics.beginPath();
       this.rayGraphics.moveTo(cx, cy);
       this.rayGraphics.lineTo(cx + Math.cos(a1) * rayLength, cy + Math.sin(a1) * rayLength);
@@ -106,97 +126,98 @@ export class PhaserStage {
     }
   }
 
-  loadCharacter(character) {
-    this.currentCharacter = character;
+  setShadowMode(isShadow) {
+    this.isShadowMode = isShadow;
+    if (this.characterSprite && !this.isRevealed) {
+      if (this.isShadowMode) {
+        this.characterSprite.setTintFill(0x181528);
+      } else {
+        this.characterSprite.clearTint();
+      }
+      this.updateSunburstColor();
+    }
+  }
+
+  loadCharacter(item, isShadowMode = true) {
+    this.currentCharacter = item;
+    this.isShadowMode = isShadowMode;
+    this.isRevealed = false;
+
     if (!this.scene) {
-      this.pendingCharacter = character;
+      this.pendingCharacter = item;
       return;
     }
 
-    const key = `char_${character.id}`;
-    const width = this.scene.scale.width;
-    const height = this.scene.scale.height;
-
-    const hexColor = parseInt(character.themeColor.replace('#', '0x'), 16) || 0xFFD700;
+    const key = `item_${item.id}`;
+    const hexColor = parseInt(item.themeColor.replace('#', '0x'), 16) || 0xFFD700;
     this.currentThemeColor = hexColor;
-    this.drawSunburst(width / 2, height / 2, hexColor);
 
-    // Load texture dynamically if not already loaded
+    this.updateSunburstColor();
+
+    // Check if texture exists, else load it
     if (!this.scene.textures.exists(key)) {
       const onComplete = () => {
         if (this.scene.textures.exists(key)) {
-          this.displayCharacter(key, character);
+          this.displayCharacter(key, item);
         } else {
-          this.createFallbackTexture(key, character);
-          this.displayCharacter(key, character);
+          this.createFallbackTexture(key, item);
+          this.displayCharacter(key, item);
         }
       };
 
       const onError = (fileObj) => {
         if (fileObj.key === key) {
-          // If .png failed, try .jpg as fallback
-          if (character.image.endsWith('.png')) {
-            const altPath = character.image.replace('.png', '.jpg');
-            this.scene.load.image(key, altPath);
-            return;
-          }
-          // If still failing, create comic placeholder texture
-          this.createFallbackTexture(key, character);
-          this.displayCharacter(key, character);
+          this.createFallbackTexture(key, item);
+          this.displayCharacter(key, item);
         }
       };
 
       this.scene.load.once('complete', onComplete);
       this.scene.load.once('loaderror', onError);
-      this.scene.load.image(key, character.image);
+      this.scene.load.image(key, item.image);
       this.scene.load.start();
     } else {
-      this.displayCharacter(key, character);
+      this.displayCharacter(key, item);
     }
   }
 
-  createFallbackTexture(key, character) {
+  createFallbackTexture(key, item) {
     if (!this.scene || this.scene.textures.exists(key)) return;
 
-    // Generate dynamic comic placeholder texture
     const canvas = document.createElement('canvas');
     canvas.width = 300;
     canvas.height = 300;
     const ctx = canvas.getContext('2d');
 
-    // Background circle with theme color
-    ctx.fillStyle = character.themeColor || '#E62429';
+    // Comic circle token
+    ctx.fillStyle = item.themeColor || '#E62429';
     ctx.beginPath();
-    ctx.arc(150, 150, 140, 0, Math.PI * 2);
+    ctx.arc(150, 150, 138, 0, Math.PI * 2);
     ctx.fill();
 
-    // Dark comic border
     ctx.lineWidth = 10;
     ctx.strokeStyle = '#1E1B18';
     ctx.stroke();
 
-    // Comic Question Mark or First Initial
     ctx.fillStyle = '#FFFFFF';
     ctx.font = 'bold 120px "Bangers", Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText('?', 150, 140);
 
-    // Character Name at bottom of token
     ctx.font = 'bold 24px "Fredoka", Arial, sans-serif';
     ctx.fillStyle = '#FFFFFF';
-    ctx.fillText(character.name.toUpperCase(), 150, 220);
+    ctx.fillText(item.name.toUpperCase(), 150, 225);
 
     this.scene.textures.addCanvas(key, canvas);
   }
 
-  displayCharacter(textureKey, character) {
+  displayCharacter(textureKey, item) {
     if (!this.scene) return;
     const width = this.scene.scale.width;
     const height = this.scene.scale.height;
 
     if (this.characterSprite) {
-      // Fade and scale out old sprite
       const oldSprite = this.characterSprite;
       this.scene.tweens.add({
         targets: oldSprite,
@@ -214,28 +235,35 @@ export class PhaserStage {
     sprite.setDepth(10);
     this.characterSprite = sprite;
 
-    // Scale to fit nicely in 260x260 circular comic viewport
     const targetSize = Math.min(width, height) * 0.78;
-    const scale = targetSize / Math.max(sprite.width, sprite.height);
+    const baseScale = targetSize / Math.max(sprite.width, sprite.height);
+    this.baseScale = baseScale;
+
     sprite.setScale(0);
     sprite.setAlpha(0);
 
-    // Circular mask with comic border
+    // Apply shadow silhouette if in shadow mode
+    if (this.isShadowMode && !this.isRevealed) {
+      sprite.setTintFill(0x181528);
+    } else {
+      sprite.clearTint();
+    }
+
+    // Circular mask
     const maskShape = this.scene.make.graphics();
     maskShape.fillStyle(0xffffff);
     maskShape.fillCircle(width / 2, height / 2, targetSize / 2);
     const mask = maskShape.createGeometryMask();
     sprite.setMask(mask);
 
-    // Bouncy comic entrance tween
+    // Bouncy entrance
     this.scene.tweens.add({
       targets: sprite,
-      scale: scale,
+      scale: baseScale,
       alpha: 1,
       duration: 650,
       ease: 'Back.easeOut',
       onComplete: () => {
-        // Idle breathing / floating motion
         if (this.idleTween) this.idleTween.stop();
         this.idleTween = this.scene.tweens.add({
           targets: sprite,
@@ -248,11 +276,109 @@ export class PhaserStage {
       }
     });
 
-    // Make character interactive to touch/click
+    // Tap reaction
     sprite.setInteractive({ useHandCursor: true });
     sprite.on('pointerdown', () => {
       this.playTapReaction();
     });
+  }
+
+  // Dramatic Reveal when player guesses correctly!
+  revealCharacter() {
+    this.isRevealed = true;
+    if (!this.scene || !this.characterSprite) return;
+
+    if (this.idleTween) this.idleTween.pause();
+
+    // Step 1: Bright white flash on the silhouette
+    this.characterSprite.setTintFill(0xFFFFFF);
+
+    // Step 2: Switch to full color after quick flash
+    this.scene.time.delayedCall(120, () => {
+      if (this.characterSprite) {
+        this.characterSprite.clearTint();
+      }
+      this.updateSunburstColor();
+    });
+
+    // Step 3: Joyous jump & spin celebration
+    const originalY = this.scene.scale.height / 2;
+    this.scene.tweens.add({
+      targets: this.characterSprite,
+      y: originalY - 48,
+      scaleX: this.baseScale * 1.25,
+      scaleY: this.baseScale * 1.25,
+      duration: 380,
+      yoyo: true,
+      ease: 'Cubic.easeOut',
+      onComplete: () => {
+        if (this.idleTween) this.idleTween.resume();
+      }
+    });
+
+    // Spin rays excitedly
+    if (this.rayGraphics) {
+      this.scene.tweens.add({
+        targets: this.rayGraphics,
+        angle: this.rayGraphics.angle + 240,
+        duration: 900,
+        ease: 'Cubic.easeOut'
+      });
+    }
+
+    // Spawn magical star particles
+    this.spawnStarParticles();
+  }
+
+  spawnStarParticles() {
+    if (!this.scene || !this.particleGraphics) return;
+    const width = this.scene.scale.width;
+    const height = this.scene.scale.height;
+
+    const stars = [];
+    const colors = [0xFFD700, 0x00E5FF, 0xFF4081, 0xFFFFFF];
+
+    for (let i = 0; i < 18; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 60 + Math.random() * 80;
+      stars.push({
+        x: width / 2,
+        y: height / 2,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        size: 3 + Math.random() * 5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: 1
+      });
+    }
+
+    let progress = 0;
+    const timer = this.scene.time.addEvent({
+      delay: 20,
+      repeat: 30,
+      callback: () => {
+        progress += 0.033;
+        this.particleGraphics.clear();
+
+        stars.forEach(s => {
+          s.x += s.vx * 0.02;
+          s.y += s.vy * 0.02;
+          s.alpha = Math.max(0, 1 - progress);
+
+          this.particleGraphics.fillStyle(s.color, s.alpha);
+          this.particleGraphics.fillCircle(s.x, s.y, s.size * (1 - progress * 0.4));
+        });
+
+        if (progress >= 1) {
+          this.particleGraphics.clear();
+          timer.destroy();
+        }
+      }
+    });
+  }
+
+  playCelebration() {
+    this.revealCharacter();
   }
 
   playTapReaction() {
@@ -267,41 +393,8 @@ export class PhaserStage {
     });
   }
 
-  playCelebration() {
-    if (!this.scene || !this.characterSprite) return;
-
-    if (this.idleTween) this.idleTween.pause();
-
-    // High jump, 360 spin & joyful scale
-    const originalY = this.scene.scale.height / 2;
-    this.scene.tweens.add({
-      targets: this.characterSprite,
-      y: originalY - 45,
-      scaleX: this.characterSprite.scaleX * 1.25,
-      scaleY: this.characterSprite.scaleY * 1.25,
-      duration: 350,
-      yoyo: true,
-      ease: 'Cubic.easeOut',
-      onComplete: () => {
-        if (this.idleTween) this.idleTween.resume();
-      }
-    });
-
-    // Speed up background ray rotation during victory
-    if (this.rayGraphics) {
-      this.scene.tweens.add({
-        targets: this.rayGraphics,
-        angle: this.rayGraphics.angle + 180,
-        duration: 800,
-        ease: 'Cubic.easeOut'
-      });
-    }
-  }
-
   playShake() {
     if (!this.scene || !this.characterSprite) return;
-
-    // Comic dizzy shake
     const currentX = this.characterSprite.x;
     this.scene.tweens.add({
       targets: this.characterSprite,

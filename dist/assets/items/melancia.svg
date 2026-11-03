@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="comic-shadow-m" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#1E1B18" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <g id="watermelon-group" filter="url(#comic-shadow-m)">
+    <!-- Outer Dark Green Rind -->
+    <path d="M50,220 C50,330 350,330 350,220 L335,210 C335,305 65,305 65,210 Z" fill="#2E7D32" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+
+    <!-- Light Green Rind Stripes -->
+    <path d="M100,285 C115,260 120,280 135,295" fill="none" stroke="#66BB6A" stroke-width="8" stroke-linecap="round" />
+    <path d="M190,300 C200,270 205,270 215,300" fill="none" stroke="#66BB6A" stroke-width="8" stroke-linecap="round" />
+    <path d="M270,285 C285,260 290,275 305,290" fill="none" stroke="#66BB6A" stroke-width="8" stroke-linecap="round" />
+
+    <!-- White / Pale Inner Rind -->
+    <path d="M65,210 C65,305 335,305 335,210 L320,195 C320,285 80,285 80,195 Z" fill="#DCEDC8" stroke="#1E1B18" stroke-width="4" />
+
+    <!-- Vibrant Red Flesh (Juicy Slice Shape with a cute bite missing on the right!) -->
+    <path d="M80,195 C80,285 320,285 320,195 
+             C300,185 300,165 310,150 
+             C290,140 280,160 270,145 
+             L200,80 L80,195 Z" 
+          fill="#FF3D57" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+
+    <!-- Comic Highlights on Red Flesh -->
+    <path d="M110,190 L185,120 L195,130 L120,200 Z" fill="#FF8A80" opacity="0.6" />
+
+    <!-- Black Teardrop Seeds -->
+    <!-- Seed 1 -->
+    <path d="M140,210 C140,200 148,190 148,190 C148,190 156,200 156,210 C156,216 149,222 148,222 C147,222 140,216 140,210 Z" fill="#1E1B18" />
+    <!-- Seed 2 -->
+    <path d="M190,230 C190,220 198,210 198,210 C198,210 206,220 206,230 C206,236 199,242 198,242 C197,242 190,236 190,230 Z" fill="#1E1B18" />
+    <!-- Seed 3 -->
+    <path d="M245,210 C245,200 253,190 253,190 C253,190 261,200 261,210 C261,216 254,222 253,222 C252,222 245,216 245,210 Z" fill="#1E1B18" />
+    <!-- Seed 4 -->
+    <path d="M170,170 C170,160 178,150 178,150 C178,150 186,160 186,170 C186,176 179,182 178,182 C177,182 170,176 170,170 Z" fill="#1E1B18" transform="rotate(-15 178 170)" />
+    <!-- Seed 5 -->
+    <path d="M225,170 C225,160 233,150 233,150 C233,150 241,160 241,170 C241,176 234,182 233,182 C232,182 225,176 225,170 Z" fill="#1E1B18" transform="rotate(15 233 170)" />
+
+    <!-- Cute Comic Sparkles -->
+    <polygon points="90,120 95,135 110,140 95,145 90,160 85,145 70,140 85,135" fill="#FFD700" stroke="#1E1B18" stroke-width="3" />
+    <polygon points="325,100 328,110 338,113 328,116 325,126 322,116 312,113 322,110" fill="#FFD700" stroke="#1E1B18" stroke-width="2.5" />
+  </g>
+</svg>

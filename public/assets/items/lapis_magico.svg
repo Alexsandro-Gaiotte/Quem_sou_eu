@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="comic-shadow-l" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#1E1B18" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <g id="pencil-group" filter="url(#comic-shadow-l)">
+    <!-- Magic Swirl Rainbow Trail from pencil tip -->
+    <path d="M105,320 C60,340 40,280 80,240 C120,200 60,160 50,110" fill="none" stroke="#FF4081" stroke-width="12" stroke-linecap="round" stroke-dasharray="16,8" />
+    <path d="M115,330 C70,350 50,290 90,250 C130,210 70,170 60,120" fill="none" stroke="#00E5FF" stroke-width="8" stroke-linecap="round" />
+
+    <!-- Twinkling Sparkle Stars along trail -->
+    <polygon points="40,220 44,232 56,235 44,238 40,250 36,238 24,235 36,232" fill="#FFD700" stroke="#1E1B18" stroke-width="3" />
+    <polygon points="120,180 123,190 133,193 123,196 120,206 117,196 107,193 117,190" fill="#FFD700" stroke="#1E1B18" stroke-width="2.5" />
+    <polygon points="70,110 74,122 86,125 74,128 70,140 66,128 54,125 66,122" fill="#FFEB3B" stroke="#1E1B18" stroke-width="3" />
+
+    <!-- Pencil Main Body (tilted 45 degrees) -->
+    <g transform="translate(195, 205) rotate(-45)">
+      <!-- Eraser at top -->
+      <rect x="-24" y="-170" width="48" height="42" rx="10" fill="#FF4081" stroke="#1E1B18" stroke-width="8" />
+
+      <!-- Metal Ferrule ring -->
+      <rect x="-26" y="-132" width="52" height="24" rx="3" fill="#CFD8DC" stroke="#1E1B18" stroke-width="7" />
+      <line x1="-24" y1="-120" x2="24" y2="-120" stroke="#78909C" stroke-width="4" />
+
+      <!-- Hexagonal Wooden Pencil Shaft -->
+      <!-- Left facet -->
+      <rect x="-24" y="-110" width="16" height="190" fill="#FBC02D" stroke="#1E1B18" stroke-width="7" />
+      <!-- Middle facet (highlight) -->
+      <rect x="-8" y="-110" width="16" height="190" fill="#FFF176" stroke="#1E1B18" stroke-width="7" />
+      <!-- Right facet (shadow) -->
+      <rect x="8" y="-110" width="16" height="190" fill="#F57F17" stroke="#1E1B18" stroke-width="7" />
+
+      <!-- Sharpened Wood Cone Tip -->
+      <polygon points="-24,80 24,80 0,145" fill="#FFE082" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+
+      <!-- Graphite / Lead Tip -->
+      <polygon points="-10,120 10,120 0,148" fill="#1E1B18" stroke="#1E1B18" stroke-width="4" stroke-linejoin="round" />
+    </g>
+
+    <!-- Star Burst directly at pencil tip -->
+    <polygon points="100,290 106,308 124,312 106,316 100,334 94,316 76,312 94,308" fill="#FFF" stroke="#1E1B18" stroke-width="4" />
+    <polygon points="320,60 324,72 336,75 324,78 320,90 316,78 304,75 316,72" fill="#FFD700" stroke="#1E1B18" stroke-width="3" />
+  </g>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="comic-shadow-s" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#1E1B18" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <g id="spaceship-group" filter="url(#comic-shadow-s)">
+    <!-- Rocket Thruster Flames -->
+    <path d="M175,290 C165,340 185,370 200,385 C215,370 235,340 225,290 Z" fill="#FF1744" stroke="#1E1B18" stroke-width="7" stroke-linejoin="round" />
+    <path d="M185,290 C180,330 195,350 200,360 C205,350 220,330 215,290 Z" fill="#FFEA00" stroke="#1E1B18" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- Left Wing / Stabilizer Fin -->
+    <path d="M130,220 L60,265 L95,295 L145,260 Z" fill="#D32F2F" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+
+    <!-- Right Wing / Stabilizer Fin -->
+    <path d="M270,220 L340,265 L305,295 L255,260 Z" fill="#D32F2F" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+
+    <!-- Top Communication Antenna with glowing orb -->
+    <line x1="200" y1="95" x2="200" y2="40" stroke="#1E1B18" stroke-width="8" stroke-linecap="round" />
+    <circle cx="200" cy="35" r="14" fill="#00E5FF" stroke="#1E1B18" stroke-width="6" />
+
+    <!-- Glass Cockpit Dome -->
+    <ellipse cx="200" cy="135" rx="70" ry="60" fill="#80D8FF" stroke="#1E1B18" stroke-width="8" />
+    <!-- Glass Highlight -->
+    <path d="M160,110 C180,95 210,95 230,105" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" />
+
+    <!-- Little Astronaut Silhouette inside glass -->
+    <circle cx="200" cy="140" r="18" fill="#1E1B18" />
+    <ellipse cx="200" cy="165" rx="24" ry="14" fill="#1E1B18" />
+
+    <!-- Main Round Spherical Ship Body (Astronauta's red/white pod) -->
+    <circle cx="200" cy="205" r="85" fill="#E53935" stroke="#1E1B18" stroke-width="9" />
+
+    <!-- Metallic Trim Ring / Belt -->
+    <ellipse cx="200" cy="205" rx="85" ry="24" fill="#ECEFF1" stroke="#1E1B18" stroke-width="7" />
+
+    <!-- Glowing Portholes along rim -->
+    <circle cx="150" cy="205" r="10" fill="#FFEB3B" stroke="#1E1B18" stroke-width="4" />
+    <circle cx="200" cy="205" r="10" fill="#FFEB3B" stroke="#1E1B18" stroke-width="4" />
+    <circle cx="250" cy="205" r="10" fill="#FFEB3B" stroke="#1E1B18" stroke-width="4" />
+
+    <!-- Bottom Exhaust Cone -->
+    <polygon points="170,285 230,285 220,305 180,305" fill="#455A64" stroke="#1E1B18" stroke-width="6" />
+
+    <!-- Stars around ship -->
+    <polygon points="75,110 78,118 87,121 78,124 75,132 72,124 63,121 72,118" fill="#FFD700" stroke="#1E1B18" stroke-width="2.5" />
+    <polygon points="325,120 328,128 337,131 328,134 325,142 322,134 313,131 322,128" fill="#FFD700" stroke="#1E1B18" stroke-width="2.5" />
+  </g>
+</svg>

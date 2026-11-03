@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="comic-shadow-u" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#1E1B18" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <g id="umbrella-group" filter="url(#comic-shadow-u)">
+    <!-- Splashing Raindrops bounced off -->
+    <path d="M70,110 C60,100 65,85 75,90 C85,95 80,115 70,110 Z" fill="#40C4FF" stroke="#1E1B18" stroke-width="4" />
+    <path d="M120,60 C110,50 115,35 125,40 C135,45 130,65 120,60 Z" fill="#40C4FF" stroke="#1E1B18" stroke-width="4" />
+    <path d="M280,60 C270,50 275,35 285,40 C295,45 290,65 280,60 Z" fill="#40C4FF" stroke="#1E1B18" stroke-width="4" />
+    <path d="M330,110 C320,100 325,85 335,90 C345,95 340,115 330,110 Z" fill="#40C4FF" stroke="#1E1B18" stroke-width="4" />
+
+    <!-- Splash shockwaves -->
+    <path d="M100,80 Q105,70 115,75" fill="none" stroke="#00B0FF" stroke-width="4" stroke-linecap="round" />
+    <path d="M295,75 Q305,70 310,80" fill="none" stroke="#00B0FF" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Top Spire / Ferrule of Umbrella -->
+    <path d="M195,95 L200,45 L205,95 Z" fill="#FFC107" stroke="#1E1B18" stroke-width="6" />
+
+    <!-- Umbrella Shaft (Metal pole) -->
+    <rect x="194" y="90" width="12" height="230" rx="3" fill="#B0BEC5" stroke="#1E1B18" stroke-width="6" />
+
+    <!-- Umbrella J-Curved Wooden Handle -->
+    <path d="M200,315 C200,370 150,370 150,335 C150,315 168,315 168,335 C168,348 184,348 184,315 Z" fill="#8D6E63" stroke="#1E1B18" stroke-width="7" />
+
+    <!-- Umbrella Canopy - Outer Rim Scallops -->
+    <!-- Segments with comic red & yellow stripes -->
+    <!-- Left Outer Segment -->
+    <path d="M60,195 Q90,185 120,195 Q90,110 200,90 Q110,120 60,195 Z" fill="#FFD600" stroke="#1E1B18" stroke-width="7" stroke-linejoin="round" />
+
+    <!-- Mid Left Segment -->
+    <path d="M120,195 Q160,185 200,195 Q160,105 200,90 Q140,110 120,195 Z" fill="#FF3D00" stroke="#1E1B18" stroke-width="7" stroke-linejoin="round" />
+
+    <!-- Mid Right Segment -->
+    <path d="M200,195 Q240,185 280,195 Q260,110 200,90 Q240,105 200,195 Z" fill="#FFD600" stroke="#1E1B18" stroke-width="7" stroke-linejoin="round" />
+
+    <!-- Right Outer Segment -->
+    <path d="M280,195 Q310,185 340,195 Q290,120 200,90 Q310,110 280,195 Z" fill="#FF3D00" stroke="#1E1B18" stroke-width="7" stroke-linejoin="round" />
+
+    <!-- Scalloped Lower Edge Reinforcement -->
+    <path d="M60,195 Q90,185 120,195 Q160,185 200,195 Q240,185 280,195 Q310,185 340,195" fill="none" stroke="#1E1B18" stroke-width="8" stroke-linecap="round" />
+
+    <!-- Metal Rib Tips (Little balls at the ends of ribs) -->
+    <circle cx="60" cy="195" r="5" fill="#FFC107" stroke="#1E1B18" stroke-width="3" />
+    <circle cx="120" cy="195" r="5" fill="#FFC107" stroke="#1E1B18" stroke-width="3" />
+    <circle cx="200" cy="195" r="5" fill="#FFC107" stroke="#1E1B18" stroke-width="3" />
+    <circle cx="280" cy="195" r="5" fill="#FFC107" stroke="#1E1B18" stroke-width="3" />
+    <circle cx="340" cy="195" r="5" fill="#FFC107" stroke="#1E1B18" stroke-width="3" />
+
+    <!-- Comic action flash -->
+    <polygon points="200,20 204,30 216,33 204,36 200,46 196,36 184,33 196,30" fill="#FFEB3B" stroke="#1E1B18" stroke-width="3" />
+  </g>
+</svg>

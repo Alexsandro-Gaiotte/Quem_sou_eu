@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="comic-shadow-h" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#1E1B18" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <g id="straw-hat-group" filter="url(#comic-shadow-h)" transform="rotate(-6 200 200)">
+    <!-- Frayed straw strands extending from brim -->
+    <path d="M45,260 L25,275 M60,280 L45,300 M100,305 L95,325 M150,320 L150,345 M200,325 L200,350 M250,320 L255,345 M300,305 L310,325 M340,280 L360,295 M355,260 L380,270" stroke="#FBC02D" stroke-width="6" stroke-linecap="round" />
+
+    <!-- Wide Straw Brim with jagged frayed edge -->
+    <path d="M50,260 
+             C40,290 120,330 200,330 
+             C280,330 360,290 350,260 
+             C330,225 270,220 200,220 
+             C130,220 70,225 50,260 Z" 
+          fill="#FFEE58" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+
+    <!-- Straw Weave Texture Lines on Brim -->
+    <path d="M70,265 Q200,310 330,265" fill="none" stroke="#FDD835" stroke-width="4" stroke-dasharray="10,8" />
+    <path d="M90,250 Q200,290 310,250" fill="none" stroke="#FDD835" stroke-width="4" stroke-dasharray="8,8" />
+
+    <!-- Hat Crown (Top dome) -->
+    <path d="M125,225 C120,110 150,85 200,85 C250,85 280,110 275,225 Z" fill="#FFF176" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+
+    <!-- Crown Crease / Indentation -->
+    <path d="M155,115 Q200,135 245,115" fill="none" stroke="#1E1B18" stroke-width="5" stroke-linecap="round" />
+    <path d="M150,150 Q200,170 250,150" fill="none" stroke="#FBC02D" stroke-width="4" stroke-dasharray="10,6" />
+
+    <!-- Red Ribbon Hat Band -->
+    <path d="M125,225 C145,215 255,215 275,225 L273,195 C253,185 147,185 127,195 Z" fill="#E53935" stroke="#1E1B18" stroke-width="7" stroke-linejoin="round" />
+
+    <!-- Ribbon Knot & Flying Tails -->
+    <ellipse cx="265" cy="210" rx="12" ry="10" fill="#C62828" stroke="#1E1B18" stroke-width="5" />
+    <path d="M272,212 C295,220 315,210 325,230 L310,235 C300,225 285,225 270,220 Z" fill="#E53935" stroke="#1E1B18" stroke-width="5" />
+    <path d="M268,218 C285,235 295,255 305,270 L292,275 C282,260 275,240 264,226 Z" fill="#E53935" stroke="#1E1B18" stroke-width="5" />
+
+    <!-- Little Wheat / Roça stalk tucked in band -->
+    <path d="M140,210 Q115,160 110,130" fill="none" stroke="#8D6E63" stroke-width="4" stroke-linecap="round" />
+    <ellipse cx="112" cy="135" rx="6" ry="12" fill="#FFCA28" stroke="#1E1B18" stroke-width="3" transform="rotate(-20 112 135)" />
+    <ellipse cx="120" cy="150" rx="6" ry="10" fill="#FFCA28" stroke="#1E1B18" stroke-width="3" transform="rotate(-30 120 150)" />
+
+    <!-- Comic Sunshine / sparkle -->
+    <polygon points="70,90 73,100 83,103 73,106 70,116 67,106 57,103 67,100" fill="#FFA000" stroke="#1E1B18" stroke-width="2.5" />
+  </g>
+</svg>

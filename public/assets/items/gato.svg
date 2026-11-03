@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="comic-shadow-c" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#1E1B18" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <g id="cat-group" filter="url(#comic-shadow-c)">
+    <!-- Curled fluffy tail -->
+    <path d="M260,300 C320,290 350,230 330,170 C315,130 280,140 290,165 C300,185 305,230 250,260 Z" fill="#FFFFFF" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+
+    <!-- Left Ear -->
+    <polygon points="120,170 140,80 185,130" fill="#FFFFFF" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+    <polygon points="132,160 145,100 175,135" fill="#FF80AB" stroke="#1E1B18" stroke-width="4" />
+
+    <!-- Right Ear -->
+    <polygon points="280,170 260,80 215,130" fill="#FFFFFF" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+    <polygon points="268,160 255,100 225,135" fill="#FF80AB" stroke="#1E1B18" stroke-width="4" />
+
+    <!-- Fluffy Cat Body -->
+    <ellipse cx="200" cy="280" rx="85" ry="75" fill="#FFFFFF" stroke="#1E1B18" stroke-width="8" />
+
+    <!-- Front Paws -->
+    <ellipse cx="170" cy="340" rx="24" ry="16" fill="#F5F5F5" stroke="#1E1B18" stroke-width="7" />
+    <ellipse cx="230" cy="340" rx="24" ry="16" fill="#F5F5F5" stroke="#1E1B18" stroke-width="7" />
+    <!-- Paw toe lines -->
+    <line x1="165" y1="334" x2="165" y2="348" stroke="#1E1B18" stroke-width="4" stroke-linecap="round" />
+    <line x1="175" y1="334" x2="175" y2="348" stroke="#1E1B18" stroke-width="4" stroke-linecap="round" />
+    <line x1="225" y1="334" x2="225" y2="348" stroke="#1E1B18" stroke-width="4" stroke-linecap="round" />
+    <line x1="235" y1="334" x2="235" y2="348" stroke="#1E1B18" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Fluffy Cat Head -->
+    <!-- Fluffy cheeks with tufts -->
+    <path d="M140,160 C100,190 100,230 140,250 C170,265 230,265 260,250 C300,230 300,190 260,160 C250,130 150,130 140,160 Z" fill="#FFFFFF" stroke="#1E1B18" stroke-width="8" stroke-linejoin="round" />
+
+    <!-- Big Shiny Blue Eyes -->
+    <ellipse cx="165" cy="188" rx="16" ry="20" fill="#29B6F6" stroke="#1E1B18" stroke-width="5" />
+    <circle cx="165" cy="188" r="10" fill="#1E1B18" />
+    <circle cx="160" cy="183" r="4" fill="#FFFFFF" />
+
+    <ellipse cx="235" cy="188" rx="16" ry="20" fill="#29B6F6" stroke="#1E1B18" stroke-width="5" />
+    <circle cx="235" cy="188" r="10" fill="#1E1B18" />
+    <circle cx="230" cy="183" r="4" fill="#FFFFFF" />
+
+    <!-- Cute Pink Nose -->
+    <polygon points="200,210 192,200 208,200" fill="#FF4081" stroke="#1E1B18" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- Mouth -->
+    <path d="M192,212 Q185,222 178,216" fill="none" stroke="#1E1B18" stroke-width="5" stroke-linecap="round" />
+    <path d="M208,212 Q215,222 222,216" fill="none" stroke="#1E1B18" stroke-width="5" stroke-linecap="round" />
+
+    <!-- Long Whiskers -->
+    <!-- Left -->
+    <line x1="145" y1="205" x2="80" y2="195" stroke="#1E1B18" stroke-width="5" stroke-linecap="round" />
+    <line x1="145" y1="218" x2="85" y2="225" stroke="#1E1B18" stroke-width="5" stroke-linecap="round" />
+    <!-- Right -->
+    <line x1="255" y1="205" x2="320" y2="195" stroke="#1E1B18" stroke-width="5" stroke-linecap="round" />
+    <line x1="255" y1="218" x2="315" y2="225" stroke="#1E1B18" stroke-width="5" stroke-linecap="round" />
+
+    <!-- Rosy Cheek blush -->
+    <circle cx="135" cy="225" r="12" fill="#FF80AB" opacity="0.6" />
+    <circle cx="265" cy="225" r="12" fill="#FF80AB" opacity="0.6" />
+  </g>
+</svg>

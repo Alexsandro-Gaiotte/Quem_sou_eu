@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="comic-shadow-ch" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#1E1B18" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <g id="chicken-group" filter="url(#comic-shadow-ch)">
+    <!-- Upright Tail Feathers -->
+    <path d="M110,240 C60,210 50,150 70,120 C90,140 100,180 120,210 Z" fill="#FFE082" stroke="#1E1B18" stroke-width="7" />
+    <path d="M125,230 C80,180 75,110 100,80 C115,110 125,160 140,200 Z" fill="#FFD54F" stroke="#1E1B18" stroke-width="7" />
+    <path d="M140,220 C100,160 110,90 135,65 C145,95 150,150 160,195 Z" fill="#FFCA28" stroke="#1E1B18" stroke-width="7" />
+
+    <!-- Legs & Yellow Feet -->
+    <line x1="170" y1="310" x2="160" y2="360" stroke="#1E1B18" stroke-width="12" stroke-linecap="round" />
+    <line x1="170" y1="310" x2="160" y2="360" stroke="#FFA000" stroke-width="7" stroke-linecap="round" />
+    <path d="M135,360 L160,360 L175,360 M160,360 L160,370" stroke="#1E1B18" stroke-width="6" stroke-linecap="round" />
+
+    <line x1="225" y1="310" x2="235" y2="360" stroke="#1E1B18" stroke-width="12" stroke-linecap="round" />
+    <line x1="225" y1="310" x2="235" y2="360" stroke="#FFA000" stroke-width="7" stroke-linecap="round" />
+    <path d="M220,360 L235,360 L255,360 M235,360 L235,370" stroke="#1E1B18" stroke-width="6" stroke-linecap="round" />
+
+    <!-- Plump Hen Body -->
+    <ellipse cx="205" cy="245" rx="100" ry="75" fill="#FFF8E1" stroke="#1E1B18" stroke-width="8" />
+
+    <!-- Wing -->
+    <path d="M165,220 C155,270 215,295 245,260 C260,240 250,210 220,205 C185,200 170,205 165,220 Z" fill="#FFE082" stroke="#1E1B18" stroke-width="7" />
+    <!-- Wing feather lines -->
+    <path d="M190,265 C205,275 225,270 235,255" fill="none" stroke="#1E1B18" stroke-width="4" stroke-linecap="round" />
+    <path d="M180,250 C195,260 215,255 225,240" fill="none" stroke="#1E1B18" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Long Hen Neck & Head -->
+    <path d="M235,210 C245,150 255,120 270,120 C285,120 295,150 285,210 Z" fill="#FFF8E1" stroke="#1E1B18" stroke-width="7" />
+    <circle cx="270" cy="115" r="38" fill="#FFF8E1" stroke="#1E1B18" stroke-width="8" />
+
+    <!-- Red Comb (Crest) on top of head -->
+    <path d="M250,90 C240,65 255,50 265,70 C270,45 285,45 290,65 C295,45 310,55 305,80 Z" fill="#E53935" stroke="#1E1B18" stroke-width="6" stroke-linejoin="round" />
+
+    <!-- Red Wattle under beak -->
+    <ellipse cx="295" cy="145" rx="12" ry="18" fill="#E53935" stroke="#1E1B18" stroke-width="5" transform="rotate(15 295 145)" />
+
+    <!-- Beak -->
+    <polygon points="295,110 340,122 295,130" fill="#FFA000" stroke="#1E1B18" stroke-width="6" stroke-linejoin="round" />
+
+    <!-- Eye -->
+    <circle cx="270" cy="110" r="11" fill="#FFFFFF" stroke="#1E1B18" stroke-width="4" />
+    <circle cx="272" cy="110" r="6" fill="#1E1B18" />
+    <circle cx="270" cy="107" r="2.5" fill="#FFFFFF" />
+
+    <!-- Rosy Cheek -->
+    <circle cx="255" cy="122" r="9" fill="#FF8A80" opacity="0.7" />
+  </g>
+</svg>

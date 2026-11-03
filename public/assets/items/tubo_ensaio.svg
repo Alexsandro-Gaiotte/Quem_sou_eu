@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="comic-shadow-t" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#1E1B18" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <g id="flask-group" filter="url(#comic-shadow-t)">
+    <!-- Rising chemical steam and bubbles -->
+    <circle cx="190" cy="50" r="14" fill="#69F0AE" stroke="#1E1B18" stroke-width="5" />
+    <circle cx="225" cy="40" r="9" fill="#00E676" stroke="#1E1B18" stroke-width="4" />
+    <circle cx="165" cy="80" r="8" fill="#B9F6CA" stroke="#1E1B18" stroke-width="4" />
+    <circle cx="240" cy="85" r="11" fill="#69F0AE" stroke="#1E1B18" stroke-width="5" />
+
+    <!-- Sparkle reaction stars -->
+    <polygon points="135,55 138,65 148,68 138,71 135,81 132,71 122,68 132,65" fill="#FFEB3B" stroke="#1E1B18" stroke-width="2.5" />
+    <polygon points="265,50 268,60 278,63 268,66 265,76 262,66 252,63 262,60" fill="#FFEB3B" stroke="#1E1B18" stroke-width="2.5" />
+
+    <!-- Glass Flask Lip & Cork -->
+    <ellipse cx="200" cy="115" rx="35" ry="12" fill="#CFD8DC" stroke="#1E1B18" stroke-width="7" />
+
+    <!-- Conical Flask Body (Erlenmeyer) -->
+    <!-- Glass Outline -->
+    <path d="M178,115 L178,180 L100,320 C85,345 105,360 135,360 L265,360 C295,360 315,345 300,320 L222,180 L222,115 Z" fill="#E0F7FA" stroke="#1E1B18" stroke-width="9" stroke-linejoin="round" />
+
+    <!-- Bubbling Colorful Liquid inside -->
+    <path d="M115,290 C140,280 170,300 200,285 C230,270 260,295 285,290 L292,315 C298,335 285,350 260,350 L140,350 C115,350 102,335 108,315 Z" fill="#00E676" stroke="#1E1B18" stroke-width="6" stroke-linejoin="round" />
+
+    <!-- Liquid Shading & Highlights -->
+    <path d="M130,305 C150,295 180,310 200,300 C220,290 250,310 270,305 L275,325 C275,340 260,345 240,345 L160,345 C140,345 125,340 125,325 Z" fill="#00C853" />
+
+    <!-- Floating internal bubbles -->
+    <circle cx="155" cy="320" r="10" fill="#FFFFFF" opacity="0.8" />
+    <circle cx="195" cy="310" r="14" fill="#FFFFFF" opacity="0.8" />
+    <circle cx="240" cy="325" r="9" fill="#FFFFFF" opacity="0.8" />
+    <circle cx="185" cy="335" r="7" fill="#FFFFFF" opacity="0.8" />
+
+    <!-- Measurement Graduation Markings on glass -->
+    <line x1="165" y1="210" x2="190" y2="210" stroke="#1E1B18" stroke-width="4" stroke-linecap="round" />
+    <line x1="150" y1="240" x2="180" y2="240" stroke="#1E1B18" stroke-width="4" stroke-linecap="round" />
+    <line x1="135" y1="270" x2="170" y2="270" stroke="#1E1B18" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Glass Reflection Highlight curve -->
+    <path d="M215,130 L285,290" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" opacity="0.7" />
+  </g>
+</svg>

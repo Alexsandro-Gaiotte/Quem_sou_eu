@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="comic-shadow-g" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#1E1B18" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <g id="guava-group" filter="url(#comic-shadow-g)">
+    <!-- Branch & Green Leaves -->
+    <path d="M170,80 Q200,60 230,40" fill="none" stroke="#6D4C41" stroke-width="12" stroke-linecap="round" />
+    <path d="M170,80 Q200,60 230,40" fill="none" stroke="#1E1B18" stroke-width="16" stroke-linecap="round" style="z-index:-1" />
+
+    <!-- Big Leaf Left -->
+    <path d="M180,65 C130,50 110,80 120,120 C140,130 180,105 180,65 Z" fill="#66BB6A" stroke="#1E1B18" stroke-width="7" stroke-linejoin="round" />
+    <path d="M180,65 Q145,95 125,115" fill="none" stroke="#2E7D32" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Big Leaf Right -->
+    <path d="M210,50 C260,35 290,65 280,105 C260,115 220,90 210,50 Z" fill="#4CAF50" stroke="#1E1B18" stroke-width="7" stroke-linejoin="round" />
+    <path d="M210,50 Q245,80 275,100" fill="none" stroke="#1B5E20" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Whole Guava (Back Left) -->
+    <ellipse cx="160" cy="180" rx="85" ry="95" fill="#C0CA33" stroke="#1E1B18" stroke-width="8" transform="rotate(-15 160 180)" />
+    <!-- Yellow-green highlights -->
+    <ellipse cx="140" cy="155" rx="35" ry="50" fill="#DCE775" opacity="0.6" transform="rotate(-15 140 155)" />
+
+    <!-- Sliced Open Guava (Front Right) showing ripe pink pulp! -->
+    <!-- Outer green skin -->
+    <circle cx="240" cy="245" r="95" fill="#9E9D24" stroke="#1E1B18" stroke-width="8" />
+    <circle cx="240" cy="245" r="86" fill="#DCE775" stroke="#1E1B18" stroke-width="4" />
+
+    <!-- Luscious Deep Pink / Coral Core -->
+    <circle cx="240" cy="245" r="76" fill="#F06292" stroke="#1E1B18" stroke-width="6" />
+
+    <!-- Inner Core Texture -->
+    <circle cx="240" cy="245" r="50" fill="#E91E63" stroke="#1E1B18" stroke-width="4" stroke-dasharray="8,6" />
+
+    <!-- Seeds scattered in pulp -->
+    <ellipse cx="225" cy="225" rx="5" ry="8" fill="#FFF59D" stroke="#1E1B18" stroke-width="3" transform="rotate(30 225 225)" />
+    <ellipse cx="255" cy="225" rx="5" ry="8" fill="#FFF59D" stroke="#1E1B18" stroke-width="3" transform="rotate(-25 255 225)" />
+    <ellipse cx="220" cy="255" rx="5" ry="8" fill="#FFF59D" stroke="#1E1B18" stroke-width="3" transform="rotate(-40 220 255)" />
+    <ellipse cx="260" cy="255" rx="5" ry="8" fill="#FFF59D" stroke="#1E1B18" stroke-width="3" transform="rotate(35 260 255)" />
+    <ellipse cx="240" cy="272" rx="5" ry="8" fill="#FFF59D" stroke="#1E1B18" stroke-width="3" transform="rotate(10 240 272)" />
+    <ellipse cx="240" cy="215" rx="5" ry="8" fill="#FFF59D" stroke="#1E1B18" stroke-width="3" transform="rotate(0 240 215)" />
+
+    <!-- Comic Sparkle -->
+    <polygon points="330,150 334,162 346,165 334,168 330,180 326,168 314,165 326,162" fill="#FFD700" stroke="#1E1B18" stroke-width="3" />
+  </g>
+</svg>

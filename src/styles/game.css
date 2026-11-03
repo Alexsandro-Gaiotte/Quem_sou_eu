@@ -5,6 +5,7 @@
   --primary-yellow: #FFD700;
   --primary-green: #2E8B57;
   --primary-blue: #1976D2;
+  --primary-purple: #7B1FA2;
   --comic-black: #1E1B18;
   --comic-white: #FFFFFF;
   --comic-bg: #FFF9E6;
@@ -69,6 +70,7 @@ body {
   align-items: center;
   margin-bottom: 14px;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .comic-title-badge {
@@ -97,6 +99,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .hud-badge {
@@ -129,6 +132,38 @@ body {
 @keyframes streakPulse {
   0% { transform: scale(1) rotate(-2deg); }
   100% { transform: scale(1.1) rotate(2deg); background: #FFAB40; }
+}
+
+/* Shadow Mode Toggle Button in Header */
+.hud-badge.shadow-toggle-btn {
+  background: #EDE7F6;
+  color: #4A148C;
+  cursor: pointer;
+  border: var(--comic-border);
+  box-shadow: var(--comic-shadow-sm);
+  padding: 5px 11px;
+  user-select: none;
+  font-size: 0.88rem;
+  transition: all 0.15s ease;
+}
+
+.hud-badge.shadow-toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--comic-shadow);
+  background: #D1C4E9;
+}
+
+.hud-badge.shadow-toggle-btn.shadow-mode-active {
+  background: #311B92;
+  color: #FFD54F;
+  border-color: #1E1B18;
+  box-shadow: 0 0 10px rgba(124, 77, 255, 0.5), var(--comic-shadow-sm);
+  animation: shadowPulse 2s infinite alternate ease-in-out;
+}
+
+@keyframes shadowPulse {
+  0% { box-shadow: 0 0 4px rgba(124, 77, 255, 0.4), var(--comic-shadow-sm); }
+  100% { box-shadow: 0 0 14px rgba(255, 215, 79, 0.8), var(--comic-shadow-sm); }
 }
 
 .icon-btn {
@@ -180,6 +215,12 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.character-comic-portal:hover {
+  transform: scale(1.02);
+  box-shadow: var(--comic-shadow-lg);
 }
 
 #phaser-character-canvas {
@@ -202,6 +243,7 @@ body {
   transform: rotate(2deg);
   z-index: 15;
   pointer-events: none;
+  transition: all 0.25s ease;
 }
 
 /* Middle: Speech Bubble & Character Clue */
@@ -544,6 +586,14 @@ body {
   .comic-app-container {
     padding: 14px 14px 18px;
     border-radius: 18px;
+  }
+  .comic-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .hud-badges {
+    justify-content: space-between;
   }
   .character-comic-portal {
     width: 210px;

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <filter id="comic-shadow-q" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#1E1B18" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <g id="easel-painting-group" filter="url(#comic-shadow-q)">
+    <!-- Wooden Easel - Back Leg -->
+    <line x1="200" y1="40" x2="200" y2="360" stroke="#8D6E63" stroke-width="16" stroke-linecap="round" />
+    <line x1="200" y1="40" x2="200" y2="360" stroke="#1E1B18" stroke-width="18" stroke-linecap="round" style="z-index:-1" />
+
+    <!-- Wooden Easel - Left Leg -->
+    <line x1="200" y1="50" x2="90" y2="360" stroke="#1E1B18" stroke-width="18" stroke-linecap="round" />
+    <line x1="200" y1="50" x2="90" y2="360" stroke="#A1887F" stroke-width="12" stroke-linecap="round" />
+
+    <!-- Wooden Easel - Right Leg -->
+    <line x1="200" y1="50" x2="310" y2="360" stroke="#1E1B18" stroke-width="18" stroke-linecap="round" />
+    <line x1="200" y1="50" x2="310" y2="360" stroke="#A1887F" stroke-width="12" stroke-linecap="round" />
+
+    <!-- Canvas Shelf / Tray -->
+    <rect x="70" y="240" width="260" height="18" rx="6" fill="#8D6E63" stroke="#1E1B18" stroke-width="7" />
+
+    <!-- Canvas Frame (Art Board) -->
+    <rect x="90" y="70" width="220" height="175" rx="8" fill="#FFF9C4" stroke="#1E1B18" stroke-width="8" />
+
+    <!-- Inside the Painting: Cute Sun & Rolling Hill with Rainbow -->
+    <g clip-path="url(#canvas-clip)">
+      <!-- Sky -->
+      <rect x="94" y="74" width="212" height="167" rx="4" fill="#E1F5FE" />
+      <!-- Rainbow Arcs -->
+      <path d="M120,200 A80,80 0 0,1 280,200" fill="none" stroke="#FF5252" stroke-width="10" />
+      <path d="M128,200 A72,72 0 0,1 272,200" fill="none" stroke="#FFD700" stroke-width="8" />
+      <path d="M136,200 A64,64 0 0,1 264,200" fill="none" stroke="#4CAF50" stroke-width="8" />
+      <!-- Green Rolling Hill -->
+      <path d="M94,190 Q150,160 210,185 Q260,205 306,180 L306,241 L94,241 Z" fill="#81C784" stroke="#1E1B18" stroke-width="4" />
+      <!-- Smiling Little Sun -->
+      <circle cx="140" cy="115" r="20" fill="#FFEB3B" stroke="#1E1B18" stroke-width="4" />
+      <!-- Sun Rays -->
+      <line x1="140" y1="88" x2="140" y2="82" stroke="#FFB300" stroke-width="4" stroke-linecap="round" />
+      <line x1="140" y1="142" x2="140" y2="148" stroke="#FFB300" stroke-width="4" stroke-linecap="round" />
+      <line x1="113" y1="115" x2="107" y2="115" stroke="#FFB300" stroke-width="4" stroke-linecap="round" />
+      <line x1="167" y1="115" x2="173" y2="115" stroke="#FFB300" stroke-width="4" stroke-linecap="round" />
+    </g>
+
+    <!-- Artist Wooden Palette (Foreground Right) -->
+    <g transform="translate(230, 230)">
+      <path d="M40,20 C80,-10 115,20 100,60 C90,85 55,100 20,80 C-10,65 -5,35 40,20 Z" fill="#D7CCC8" stroke="#1E1B18" stroke-width="7" />
+      <!-- Thumb hole -->
+      <ellipse cx="75" cy="65" rx="8" ry="12" fill="#FFF" stroke="#1E1B18" stroke-width="4" transform="rotate(25 75 65)" />
+      <!-- Color Daubs on Palette -->
+      <circle cx="35" cy="30" r="9" fill="#E53935" />
+      <circle cx="62" cy="22" r="9" fill="#FFD600" />
+      <circle cx="88" cy="35" r="9" fill="#1E88E5" />
+      <circle cx="45" cy="65" r="9" fill="#43A047" />
+    </g>
+
+    <!-- Paintbrush crossing the palette -->
+    <g transform="translate(210, 260) rotate(-45)">
+      <!-- Handle -->
+      <rect x="0" y="0" width="10" height="90" rx="4" fill="#8D6E63" stroke="#1E1B18" stroke-width="5" />
+      <!-- Ferrule (metal) -->
+      <rect x="0" y="80" width="10" height="16" fill="#CFD8DC" stroke="#1E1B18" stroke-width="4" />
+      <!-- Bristles with wet paint -->
+      <path d="M-1,96 C0,115 10,115 11,96 Z" fill="#FF5252" stroke="#1E1B18" stroke-width="4" />
+    </g>
+
+    <!-- Magic Sparkle -->
+    <polygon points="325,60 329,72 342,75 329,78 325,90 321,78 308,75 321,72" fill="#FFD700" stroke="#1E1B18" stroke-width="3" />
+  </g>
+</svg>
