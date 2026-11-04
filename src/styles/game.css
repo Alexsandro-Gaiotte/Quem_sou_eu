@@ -9,10 +9,10 @@
   --comic-black: #1E1B18;
   --comic-white: #FFFFFF;
   --comic-bg: #FFF9E6;
-  --comic-border: 3.5px solid var(--comic-black);
-  --comic-shadow: 5px 5px 0px var(--comic-black);
-  --comic-shadow-sm: 3px 3px 0px var(--comic-black);
-  --comic-shadow-lg: 8px 8px 0px var(--comic-black);
+  --comic-border: clamp(3px, 0.28vw, 6px) solid var(--comic-black);
+  --comic-shadow: clamp(4px, 0.4vw, 8px) clamp(4px, 0.4vw, 8px) 0px var(--comic-black);
+  --comic-shadow-sm: clamp(2.5px, 0.25vw, 5px) clamp(2.5px, 0.25vw, 5px) 0px var(--comic-black);
+  --comic-shadow-lg: clamp(7px, 0.7vw, 14px) clamp(7px, 0.7vw, 14px) 0px var(--comic-black);
   --font-comic-title: 'Bangers', cursive, sans-serif;
   --font-comic-body: 'Fredoka', 'Comic Neue', cursive, sans-serif;
 }
@@ -24,6 +24,15 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Avoid page-level scrollbars on interactive TV boards */
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation; /* Instant touch feedback without 300ms tap delay or double-tap zoom */
+}
+
 body {
   font-family: var(--font-comic-body);
   background-color: #64B5F6;
@@ -31,35 +40,35 @@ body {
   background-image: 
     radial-gradient(#42A5F5 20%, transparent 20%),
     radial-gradient(#42A5F5 20%, transparent 20%);
-  background-size: 24px 24px;
-  background-position: 0 0, 12px 12px;
-  min-height: 100vh;
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--comic-black);
-  overflow-x: hidden;
-  padding: 12px;
+  padding: clamp(8px, 1.6vh, 24px);
 }
 
 /* Main Comic Book App Frame */
 .comic-app-container {
   width: 100%;
   max-width: 580px;
+  height: auto;
+  max-height: 98vh;
   background: var(--comic-bg);
   border: var(--comic-border);
   box-shadow: var(--comic-shadow-lg);
-  border-radius: 24px;
+  border-radius: clamp(16px, 2vw, 30px);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 18px 20px 24px;
+  padding: clamp(12px, 1.8vh, 24px) clamp(14px, 2vw, 30px);
   animation: comicPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes comicPopIn {
-  0% { transform: scale(0.85); opacity: 0; }
+  0% { transform: scale(0.9); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
 
@@ -68,8 +77,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
-  gap: 8px;
+  margin-bottom: clamp(8px, 1.4vh, 18px);
+  gap: clamp(8px, 1vw, 16px);
   flex-wrap: wrap;
 }
 
@@ -77,28 +86,28 @@ body {
   background: var(--primary-yellow);
   border: var(--comic-border);
   box-shadow: var(--comic-shadow-sm);
-  padding: 6px 14px;
-  border-radius: 14px;
+  padding: clamp(4px, 0.8vh, 10px) clamp(10px, 1.4vw, 20px);
+  border-radius: clamp(12px, 1.2vw, 18px);
   transform: rotate(-1.5deg);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: clamp(6px, 0.8vw, 12px);
 }
 
 .comic-title-badge h1 {
   font-family: var(--font-comic-title);
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 2.2vw, 3.2rem);
   letter-spacing: 1.5px;
   color: var(--primary-red);
   text-shadow: 1.5px 1.5px 0 #fff, 2.5px 2.5px 0 var(--comic-black);
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.05;
 }
 
 .hud-badges {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: clamp(6px, 0.8vw, 12px);
   flex-wrap: wrap;
 }
 
@@ -106,14 +115,15 @@ body {
   background: #FFF;
   border: var(--comic-border);
   box-shadow: var(--comic-shadow-sm);
-  border-radius: 12px;
-  padding: 4px 10px;
+  border-radius: clamp(10px, 1vw, 16px);
+  padding: clamp(4px, 0.7vh, 10px) clamp(8px, 1.1vw, 18px);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: clamp(0.88rem, 1.1vw, 1.45rem);
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   transition: transform 0.15s ease;
+  user-select: none;
 }
 
 .hud-badge.score-badge {
@@ -131,7 +141,7 @@ body {
 
 @keyframes streakPulse {
   0% { transform: scale(1) rotate(-2deg); }
-  100% { transform: scale(1.1) rotate(2deg); background: #FFAB40; }
+  100% { transform: scale(1.08) rotate(2deg); background: #FFAB40; }
 }
 
 /* Shadow Mode Toggle Button in Header */
@@ -141,9 +151,6 @@ body {
   cursor: pointer;
   border: var(--comic-border);
   box-shadow: var(--comic-shadow-sm);
-  padding: 5px 11px;
-  user-select: none;
-  font-size: 0.88rem;
   transition: all 0.15s ease;
 }
 
@@ -170,15 +177,16 @@ body {
   background: #FFF;
   border: var(--comic-border);
   box-shadow: var(--comic-shadow-sm);
-  border-radius: 12px;
-  width: 38px;
-  height: 38px;
+  border-radius: clamp(10px, 1vw, 16px);
+  width: clamp(38px, 3.4vw, 56px);
+  height: clamp(38px, 3.4vw, 56px);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 1.5vw, 1.8rem);
   transition: all 0.15s ease;
+  user-select: none;
 }
 
 .icon-btn:hover {
@@ -192,21 +200,29 @@ body {
   box-shadow: 1px 1px 0 var(--comic-black);
 }
 
-/* Stage: Character in Comic Frame (Top) */
+/* Main Game Body: Portrait by default */
+.comic-game-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Stage: Character in Comic Frame */
 .character-stage-wrapper {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: clamp(8px, 1.4vh, 16px);
 }
 
 .character-comic-portal {
-  width: 250px;
-  height: 250px;
+  width: clamp(210px, 28vh, 290px);
+  height: clamp(210px, 28vh, 290px);
   border-radius: 50%;
-  border: 4.5px solid var(--comic-black);
+  border: clamp(4px, 0.5vw, 8px) solid var(--comic-black);
   box-shadow: var(--comic-shadow);
   background: #FFF;
   position: relative;
@@ -216,6 +232,7 @@ body {
   align-items: center;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  touch-action: manipulation;
 }
 
 .character-comic-portal:hover {
@@ -230,13 +247,13 @@ body {
 
 .stage-badge {
   position: absolute;
-  bottom: 0px;
+  bottom: -4px;
   background: var(--primary-red);
   color: #FFF;
   font-family: var(--font-comic-title);
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.55rem);
   letter-spacing: 1px;
-  padding: 3px 14px;
+  padding: clamp(3px, 0.5vh, 8px) clamp(10px, 1.4vw, 22px);
   border: var(--comic-border);
   box-shadow: var(--comic-shadow-sm);
   border-radius: 20px;
@@ -244,12 +261,21 @@ body {
   z-index: 15;
   pointer-events: none;
   transition: all 0.25s ease;
+  white-space: nowrap;
 }
 
-/* Middle: Speech Bubble & Character Clue */
+/* Interaction Column: Middle & Bottom */
+.interaction-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 0;
+}
+
+/* Speech Bubble & Character Clue */
 .speech-bubble-wrapper {
   position: relative;
-  margin-bottom: 18px;
+  margin-bottom: clamp(10px, 1.5vh, 18px);
   padding: 0 4px;
 }
 
@@ -257,11 +283,11 @@ body {
   background: #FFFFFF;
   border: var(--comic-border);
   box-shadow: var(--comic-shadow);
-  border-radius: 18px;
-  padding: 16px 20px;
+  border-radius: clamp(14px, 1.5vw, 24px);
+  padding: clamp(12px, 1.6vh, 22px) clamp(14px, 1.8vw, 28px);
   position: relative;
   text-align: center;
-  min-height: 82px;
+  min-height: clamp(75px, 10vh, 120px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -269,7 +295,7 @@ body {
   transition: transform 0.2s ease;
 }
 
-/* Speech bubble pointer (pointing up to character) */
+/* Speech bubble pointer (pointing UP in portrait mode) */
 .speech-bubble::before {
   content: '';
   position: absolute;
@@ -300,13 +326,13 @@ body {
   display: inline-block;
   font-family: var(--font-comic-title);
   color: #757575;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 1.1vw, 1.35rem);
   letter-spacing: 1px;
   margin-bottom: 4px;
 }
 
 .clue-text {
-  font-size: 1.15rem;
+  font-size: clamp(1.1rem, 1.5vw, 2.05rem);
   line-height: 1.35;
   font-weight: 700;
   color: var(--comic-black);
@@ -319,13 +345,13 @@ body {
 /* Bottom: Character Selection Cards */
 .selection-prompt {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: clamp(6px, 1vh, 12px);
 }
 
 .prompt-tag {
   display: inline-block;
   font-family: var(--font-comic-title);
-  font-size: 1.35rem;
+  font-size: clamp(1.2rem, 1.6vw, 2.2rem);
   color: var(--primary-blue);
   letter-spacing: 1px;
   text-shadow: 1px 1px 0 #FFF;
@@ -334,18 +360,18 @@ body {
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: clamp(8px, 1.4vh, 18px);
+  margin-bottom: clamp(8px, 1.2vh, 16px);
 }
 
 .comic-card {
   background: #FFF;
   border: var(--comic-border);
   box-shadow: var(--comic-shadow);
-  border-radius: 14px;
-  padding: 14px 12px;
+  border-radius: clamp(12px, 1.2vw, 20px);
+  padding: clamp(10px, 1.4vh, 20px) clamp(10px, 1.2vw, 20px);
   font-family: var(--font-comic-title);
-  font-size: 1.45rem;
+  font-size: clamp(1.3rem, 1.8vw, 2.5rem);
   letter-spacing: 1.2px;
   color: var(--comic-black);
   text-align: center;
@@ -357,11 +383,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 56px;
+  min-height: clamp(52px, 7.5vh, 90px);
+  touch-action: manipulation;
 }
 
 .comic-card:hover {
-  transform: translateY(-4px) scale(1.03);
+  transform: translateY(-4px) scale(1.02);
   box-shadow: var(--comic-shadow-lg);
   background: #FFFDE7;
   color: var(--primary-red);
@@ -372,19 +399,19 @@ body {
   box-shadow: 2px 2px 0 var(--comic-black);
 }
 
-/* Card States */
+/* Card Feedback States */
 .comic-card.correct {
   background: #00E676 !important;
   color: #004D40 !important;
-  transform: scale(1.05) !important;
-  box-shadow: 0 0 16px rgba(0, 230, 118, 0.6), var(--comic-shadow) !important;
+  transform: scale(1.04) !important;
+  box-shadow: 0 0 18px rgba(0, 230, 118, 0.7), var(--comic-shadow) !important;
   animation: cardSuccessJump 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes cardSuccessJump {
   0% { transform: scale(0.95); }
-  50% { transform: scale(1.12) rotate(2deg); }
-  100% { transform: scale(1.05) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(2deg); }
+  100% { transform: scale(1.04) rotate(0deg); }
 }
 
 .comic-card.wrong {
@@ -416,16 +443,18 @@ body {
   background: #E1F5FE;
   border: var(--comic-border);
   box-shadow: var(--comic-shadow-sm);
-  border-radius: 12px;
+  border-radius: clamp(10px, 1vw, 16px);
   font-family: var(--font-comic-body);
   font-weight: 700;
-  font-size: 0.9rem;
-  padding: 8px 14px;
+  font-size: clamp(0.88rem, 1.1vw, 1.45rem);
+  padding: clamp(6px, 1vh, 12px) clamp(12px, 1.5vw, 24px);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 6px;
   transition: all 0.15s ease;
+  user-select: none;
+  touch-action: manipulation;
 }
 
 .hint-btn:hover {
@@ -434,11 +463,17 @@ body {
   box-shadow: var(--comic-shadow);
 }
 
+.hint-btn:active {
+  transform: translateY(2px);
+  box-shadow: 1px 1px 0 var(--comic-black);
+}
+
 .round-tracker {
   font-family: var(--font-comic-title);
-  font-size: 1.15rem;
+  font-size: clamp(1.1rem, 1.4vw, 1.9rem);
   letter-spacing: 1px;
   color: #555;
+  user-select: none;
 }
 
 /* Comic Explosive Onomatopoeia FX */
@@ -446,14 +481,14 @@ body {
   position: fixed;
   z-index: 9999;
   font-family: var(--font-comic-title);
-  font-size: 2.8rem;
+  font-size: clamp(2.4rem, 4vw, 4.5rem);
   letter-spacing: 2px;
   color: #FFF;
   text-shadow: 2px 2px 0 var(--comic-black), -2px -2px 0 var(--comic-black), 2px -2px 0 var(--comic-black), -2px 2px 0 var(--comic-black);
-  border: 4px solid var(--comic-black);
-  box-shadow: 6px 6px 0 var(--comic-black);
-  padding: 6px 20px;
-  border-radius: 18px;
+  border: clamp(3px, 0.4vw, 6px) solid var(--comic-black);
+  box-shadow: clamp(5px, 0.6vw, 10px) clamp(5px, 0.6vw, 10px) 0 var(--comic-black);
+  padding: clamp(6px, 1vh, 14px) clamp(16px, 2vw, 32px);
+  border-radius: clamp(14px, 1.5vw, 24px);
   pointer-events: none;
   transform: translate(-50%, -50%) rotate(var(--rot, -6deg)) scale(0.3);
   animation: burstPop 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
@@ -492,16 +527,16 @@ body {
   background: var(--comic-bg);
   border: var(--comic-border);
   box-shadow: var(--comic-shadow-lg);
-  border-radius: 24px;
-  max-width: 440px;
+  border-radius: clamp(18px, 2vw, 32px);
+  max-width: clamp(380px, 45vw, 640px);
   width: 100%;
-  padding: 28px 24px;
+  padding: clamp(20px, 3vh, 40px) clamp(20px, 3vw, 40px);
   text-align: center;
   animation: comicPopIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .modal-trophy {
-  font-size: 3.8rem;
+  font-size: clamp(3.2rem, 5vw, 6rem);
   margin-bottom: 8px;
   animation: trophyBob 1s infinite alternate ease-in-out;
 }
@@ -513,7 +548,7 @@ body {
 
 .modal-title {
   font-family: var(--font-comic-title);
-  font-size: 2.2rem;
+  font-size: clamp(2rem, 3.2vw, 3.8rem);
   color: var(--primary-red);
   letter-spacing: 1.5px;
   text-shadow: 1.5px 1.5px 0 var(--comic-black);
@@ -521,21 +556,21 @@ body {
 }
 
 .modal-subtitle {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 1.4vw, 1.8rem);
   font-weight: 700;
   color: #444;
-  margin-bottom: 18px;
+  margin-bottom: clamp(14px, 2vh, 24px);
 }
 
 .modal-stats {
   background: #FFF;
   border: var(--comic-border);
   box-shadow: var(--comic-shadow-sm);
-  border-radius: 14px;
-  padding: 14px;
+  border-radius: clamp(12px, 1.2vw, 18px);
+  padding: clamp(10px, 1.5vh, 20px);
   display: flex;
   justify-content: space-around;
-  margin-bottom: 22px;
+  margin-bottom: clamp(16px, 2.5vh, 28px);
 }
 
 .stat-item {
@@ -545,12 +580,12 @@ body {
 
 .stat-val {
   font-family: var(--font-comic-title);
-  font-size: 1.8rem;
+  font-size: clamp(1.6rem, 2.4vw, 3.2rem);
   color: var(--primary-blue);
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  font-size: clamp(0.8rem, 1.1vw, 1.35rem);
   font-weight: 700;
   color: #666;
 }
@@ -560,14 +595,16 @@ body {
   color: var(--comic-black);
   border: var(--comic-border);
   box-shadow: var(--comic-shadow);
-  border-radius: 14px;
+  border-radius: clamp(12px, 1.2vw, 20px);
   font-family: var(--font-comic-title);
-  font-size: 1.5rem;
+  font-size: clamp(1.4rem, 2vw, 2.4rem);
   letter-spacing: 1.2px;
-  padding: 12px 28px;
+  padding: clamp(10px, 1.5vh, 20px) clamp(20px, 2.5vw, 36px);
   cursor: pointer;
   transition: all 0.15s ease;
   width: 100%;
+  user-select: none;
+  touch-action: manipulation;
 }
 
 .modal-btn:hover {
@@ -581,33 +618,138 @@ body {
   box-shadow: 2px 2px 0 var(--comic-black);
 }
 
-/* Responsive tweaks */
+/* ==========================================================================
+   LANDSCAPE & LARGE SCREENS RESPONSIVE LAYOUT (20" to 80" DISPLAYS)
+   Covers Samsung 75" and Intelbras 80" Interactive Boards, 1080p, 2K & 4K
+   ========================================================================== */
+@media (min-width: 768px) and (orientation: landscape), (min-width: 1024px) {
+  .comic-app-container {
+    max-width: min(1500px, 96vw);
+    width: 95vw;
+    height: min(94vh, 940px);
+    max-height: 96vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .comic-game-body {
+    display: grid;
+    grid-template-columns: minmax(280px, 40%) 1fr;
+    grid-gap: clamp(16px, 2.8vw, 48px);
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .stage-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .character-stage-wrapper {
+    margin-bottom: 0;
+    width: auto;
+  }
+
+  /* Large comic silhouette portal in landscape */
+  .character-comic-portal {
+    width: clamp(240px, 44vh, 480px);
+    height: clamp(240px, 44vh, 480px);
+  }
+
+  .interaction-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    min-height: 0;
+    gap: clamp(8px, 1.4vh, 20px);
+  }
+
+  .speech-bubble-wrapper {
+    margin-bottom: 0;
+  }
+
+  /* Speech bubble pointer pointing LEFT toward character stage portal */
+  .speech-bubble::before {
+    top: 50%;
+    left: -16px;
+    transform: translateY(-50%);
+    border-width: 14px 16px 14px 0;
+    border-color: transparent var(--comic-black) transparent transparent;
+  }
+
+  .speech-bubble::after {
+    top: 50%;
+    left: -11px;
+    transform: translateY(-50%);
+    border-width: 11px 12px 11px 0;
+    border-color: transparent #FFFFFF transparent transparent;
+  }
+
+  .cards-grid {
+    gap: clamp(10px, 1.6vh, 20px);
+    margin-bottom: 0;
+  }
+
+  .comic-card {
+    min-height: clamp(58px, 8.8vh, 100px);
+  }
+
+  .comic-footer-actions {
+    margin-top: clamp(4px, 1vh, 14px);
+  }
+}
+
+/* ==========================================================================
+   ULTRA-LARGE & 4K UHD SCREENS (75" / 80" / 3840x2160 or 2560x1440)
+   ========================================================================== */
+@media (min-width: 1800px) and (min-height: 900px) {
+  :root {
+    --comic-border: 5px solid var(--comic-black);
+    --comic-shadow: 8px 8px 0px var(--comic-black);
+    --comic-shadow-sm: 5px 5px 0px var(--comic-black);
+    --comic-shadow-lg: 14px 14px 0px var(--comic-black);
+  }
+
+  .comic-app-container {
+    max-width: min(1680px, 94vw);
+    height: min(92vh, 1100px);
+    padding: 30px 40px;
+    border-radius: 36px;
+  }
+
+  .character-comic-portal {
+    width: clamp(340px, 48vh, 540px);
+    height: clamp(340px, 48vh, 540px);
+    border-width: 7px;
+  }
+
+  .comic-card {
+    min-height: clamp(80px, 10vh, 120px);
+    font-size: 2.3rem;
+  }
+}
+
+/* Small mobile portrait fallback */
 @media (max-width: 480px) {
   .comic-app-container {
-    padding: 14px 14px 18px;
+    padding: 12px 12px 16px;
     border-radius: 18px;
   }
   .comic-header {
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
+    gap: 8px;
   }
   .hud-badges {
     justify-content: space-between;
   }
   .character-comic-portal {
-    width: 210px;
-    height: 210px;
-  }
-  .comic-card {
-    font-size: 1.25rem;
-    padding: 12px 8px;
-    min-height: 50px;
-  }
-  .comic-title-badge h1 {
-    font-size: 1.4rem;
-  }
-  .clue-text {
-    font-size: 1.05rem;
+    width: 200px;
+    height: 200px;
   }
 }

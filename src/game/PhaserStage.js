@@ -9,6 +9,8 @@ export class PhaserStage {
     this.isShadowMode = true;
     this.isRevealed = false;
     this.idleTween = null;
+    this.maskShape = null;
+    this.resizeObserver = null;
     this.initGame();
   }
 
@@ -42,19 +44,54 @@ export class PhaserStage {
 
     this.game = new Phaser.Game(config);
 
-    window.addEventListener('resize', () => {
-      if (this.game && container) {
-        const w = container.clientWidth || 340;
-        const h = container.clientHeight || 340;
-        this.game.scale.resize(w, h);
-        if (this.characterSprite) {
-          this.characterSprite.setPosition(w / 2, h / 2);
+    // Dynamic resize handler: ResizeObserver works for both window resize and responsive layout changes
+    if (typeof ResizeObserver !== 'undefined' && container) {
+      this.resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          const cr = entry.contentRect;
+          if (cr.width > 0 && cr.height > 0) {
+            this.handleResize(cr.width, cr.height);
+          }
         }
-        if (this.rayGraphics) {
-          this.updateSunburstColor();
+      });
+      this.resizeObserver.observe(container);
+    } else {
+      window.addEventListener('resize', () => {
+        if (container) {
+          this.handleResize(container.clientWidth || 340, container.clientHeight || 340);
         }
+      });
+    }
+  }
+
+  handleResize(w, h) {
+    if (!this.game || !this.scene) return;
+
+    this.game.scale.resize(w, h);
+
+    if (this.characterSprite) {
+      this.characterSprite.setPosition(w / 2, h / 2);
+      const targetSize = Math.min(w, h) * 0.78;
+      this.baseScale = targetSize / Math.max(this.characterSprite.width, this.characterSprite.height);
+
+      if (!this.isRevealed) {
+        this.characterSprite.setScale(this.baseScale);
       }
-    });
+
+      // Recreate circular mask
+      if (this.maskShape) {
+        this.maskShape.destroy();
+      }
+      this.maskShape = this.scene.make.graphics();
+      this.maskShape.fillStyle(0xffffff);
+      this.maskShape.fillCircle(w / 2, h / 2, targetSize / 2);
+      const mask = this.maskShape.createGeometryMask();
+      this.characterSprite.setMask(mask);
+    }
+
+    if (this.rayGraphics) {
+      this.updateSunburstColor();
+    }
   }
 
   createScene() {
@@ -105,7 +142,7 @@ export class PhaserStage {
     if (!this.rayGraphics) return;
     this.rayGraphics.clear();
     const numRays = 16;
-    const rayLength = 340;
+    const rayLength = Math.max(cx, cy) * 2.5; // Dynamic length for any screen size (20" to 80")
     const angleStep = (Math.PI * 2) / numRays;
 
     for (let i = 0; i < numRays; i++) {
@@ -250,10 +287,13 @@ export class PhaserStage {
     }
 
     // Circular mask
-    const maskShape = this.scene.make.graphics();
-    maskShape.fillStyle(0xffffff);
-    maskShape.fillCircle(width / 2, height / 2, targetSize / 2);
-    const mask = maskShape.createGeometryMask();
+    if (this.maskShape) {
+      this.maskShape.destroy();
+    }
+    this.maskShape = this.scene.make.graphics();
+    this.maskShape.fillStyle(0xffffff);
+    this.maskShape.fillCircle(width / 2, height / 2, targetSize / 2);
+    const mask = this.maskShape.createGeometryMask();
     sprite.setMask(mask);
 
     // Bouncy entrance

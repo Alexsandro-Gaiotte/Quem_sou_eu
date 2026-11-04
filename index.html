@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Quem Sou Eu? - Animais &amp; Objetos</title>
   <meta name="description" content="Jogo interativo e animado de Quem Sou Eu com Animais e Objetos. Adivinhe pela silhueta no Modo Sombra e descubra pistas divertidas cheias de referências indiretas!" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>" />
@@ -28,44 +28,55 @@
         <button id="sound-toggle-btn" class="icon-btn" title="Ligar/Desligar Som" aria-label="Ligar ou desligar som">
           🔊
         </button>
+        <button id="fullscreen-toggle-btn" class="icon-btn" title="Tela Cheia (Lousa Digital / TV)" aria-label="Alternar Tela Cheia">
+          ⛶
+        </button>
       </div>
     </header>
 
-    <!-- Item Stage (Phaser 3 2D Interactive Stage) -->
-    <section class="character-stage-wrapper" aria-label="Palco do Item">
-      <div class="character-comic-portal" id="character-portal" title="Clique no item!">
-        <div id="phaser-character-canvas"></div>
+    <!-- Main Game Body: Adaptable to 20" - 80" Large Screens -->
+    <main class="comic-game-body">
+      <!-- Stage Column (Character Stage & Silhouette) -->
+      <div class="stage-column">
+        <section class="character-stage-wrapper" aria-label="Palco do Item">
+          <div class="character-comic-portal" id="character-portal" title="Clique no item!">
+            <div id="phaser-character-canvas"></div>
+          </div>
+          <div class="stage-badge" id="stage-badge">👤 MODO SOMBRA</div>
+        </section>
       </div>
-      <div class="stage-badge" id="stage-badge">👤 MODO SOMBRA</div>
-    </section>
 
-    <!-- Item Clue (Middle: Comic Speech Bubble) -->
-    <section class="speech-bubble-wrapper" aria-label="Dica do Item">
-      <div class="speech-bubble">
-        <span class="clue-label">DICA MISTERIOSA</span>
-        <p class="clue-text" id="character-clue-text">Carregando pista...</p>
-      </div>
-    </section>
+      <!-- Interaction Column (Speech Bubble Clue, Answer Cards, Controls) -->
+      <div class="interaction-column">
+        <!-- Item Clue (Middle: Comic Speech Bubble) -->
+        <section class="speech-bubble-wrapper" aria-label="Dica do Item">
+          <div class="speech-bubble">
+            <span class="clue-label">DICA MISTERIOSA</span>
+            <p class="clue-text" id="character-clue-text">Carregando pista...</p>
+          </div>
+        </section>
 
-    <!-- Item Selection Cards (Bottom) -->
-    <section class="selection-section" aria-label="Opções de Resposta">
-      <div class="selection-prompt">
-        <span class="prompt-tag">QUEM SOU EU? ESCOLHA A RESPOSTA!</span>
-      </div>
-      <div class="cards-grid" id="cards-grid">
-        <!-- Interactive Cards injected dynamically -->
-      </div>
-    </section>
+        <!-- Item Selection Cards -->
+        <section class="selection-section" aria-label="Opções de Resposta">
+          <div class="selection-prompt">
+            <span class="prompt-tag">QUEM SOU EU? ESCOLHA A RESPOSTA!</span>
+          </div>
+          <div class="cards-grid" id="cards-grid">
+            <!-- Interactive Cards injected dynamically -->
+          </div>
+        </section>
 
-    <!-- Footer Controls -->
-    <footer class="comic-footer-actions">
-      <button class="hint-btn" id="hint-btn" title="Ver outra pista sobre o item">
-        💡 Outra Dica
-      </button>
-      <div class="round-tracker">
-        Rodada: <span id="hud-round">1 / 8</span>
+        <!-- Footer Controls -->
+        <footer class="comic-footer-actions">
+          <button class="hint-btn" id="hint-btn" title="Ver outra pista sobre o item">
+            💡 Outra Dica
+          </button>
+          <div class="round-tracker">
+            Rodada: <span id="hud-round">1 / 8</span>
+          </div>
+        </footer>
       </div>
-    </footer>
+    </main>
   </div>
 
   <!-- Victory / Game Complete Modal -->

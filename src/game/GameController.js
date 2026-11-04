@@ -31,6 +31,7 @@ export class GameController {
     this.cardsContainer = document.getElementById('cards-grid');
     this.soundBtn = document.getElementById('sound-toggle-btn');
     this.shadowToggleBtn = document.getElementById('shadow-mode-toggle-btn');
+    this.fullscreenBtn = document.getElementById('fullscreen-toggle-btn');
     this.stageBadge = document.getElementById('stage-badge');
     this.hintBtn = document.getElementById('hint-btn');
     this.modalOverlay = document.getElementById('game-modal');
@@ -62,6 +63,23 @@ export class GameController {
       this.updateShadowUI();
     }
 
+    // Fullscreen toggle handler (for 20" to 80" touchscreens and interactive displays)
+    if (this.fullscreenBtn) {
+      this.fullscreenBtn.addEventListener('click', () => {
+        this.toggleFullscreen();
+        sound.playPop();
+      });
+
+      const updateFsIcon = () => {
+        const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+        this.fullscreenBtn.textContent = isFs ? '✕' : '⛶';
+        this.fullscreenBtn.title = isFs ? 'Sair da Tela Cheia' : 'Tela Cheia (Lousa Digital / TV)';
+      };
+
+      document.addEventListener('fullscreenchange', updateFsIcon);
+      document.addEventListener('webkitfullscreenchange', updateFsIcon);
+    }
+
     // Hint button handler
     if (this.hintBtn) {
       this.hintBtn.addEventListener('click', () => {
@@ -84,6 +102,23 @@ export class GameController {
       portal.addEventListener('click', () => {
         sound.playBoing();
       });
+    }
+  }
+
+  toggleFullscreen() {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen().catch(() => {});
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
     }
   }
 
@@ -112,7 +147,7 @@ export class GameController {
     this.currentIndex = 0;
     this.updateHUD();
 
-    // Shuffle 8-10 items per match for a punchy game session
+    // Shuffle 8 items per match for a punchy game session
     const fullDeck = [...this.characters].sort(() => Math.random() - 0.5);
     this.shuffledDeck = fullDeck.slice(0, 8);
 
